@@ -16,3 +16,5 @@ Route::get('/staff/edit_staff/{id}', [StaffController::class, 'edit_staff'])->na
 Route::post('/staff/edit_save_create/{id}', [StaffController::class, 'edit_save_create'])->name('admin.edit_save_create');
 
 Route::get('/subjects', [AdminController::class,'view_subjects'])->name('admin.subjects');
+
+Route::get('view_pupils/{id}',[AdminController::class,'view_pupils'])->name('admin/view_pupils');

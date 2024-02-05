@@ -16,4 +16,9 @@ class PupilData extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    function user_group()
+    {
+        return $this->hasOne(Groups::class, 'id', 'group_id');
+    }
 }
