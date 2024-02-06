@@ -20,7 +20,7 @@ class UserController extends Controller
             'bill' => 'required',
             'adress' => 'required',
             'number' => 'required|max:50',
-            'finish_billing' =>'required'
+            'finish_billing' => 'required'
 
         ]);
 
@@ -31,31 +31,30 @@ class UserController extends Controller
             $path = 'storage/admin/' . $req->file('photo')->hashName();
         }
 
-      $user=User::create([
+        $user = User::create([
             'role_id' => 2,
             'name' => $validate['name'],
             'email' => $validate['email'],
             'photo' => $path,
             'password' => Hash::make($validate['password'])
         ]);
+
         AdminData::create([
+            'user_id' => $user->id,
             'adress' => $validate['adress'],
             'number' => $validate['number'],
             'instagram' => $req->instagram,
             'telegram' => $req->telegram,
             'bill' => $validate['bill'],
-            'finish_billing'=>$validate['finish_billing'],
-            'user_id'=>$user->id
+            'finish_billing' => $validate['finish_billing']
         ]);
+
         $fileContent = "Login: {$validate['name']}\nPass: {$validate['password']}";
 
-        // Generate a unique filename
         $filename = 'admin_credentials_' . time() . '.txt';
 
-        // Store the content in the storage
         Storage::put($filename, $fileContent);
 
-        // Download the file
         return response()->download(storage_path("app/{$filename}"))->deleteFileAfterSend(true);
     }
 
@@ -72,26 +71,40 @@ class UserController extends Controller
     {
         $validate = $req->validate([
             'name' => 'required',
-            'email' => 'required|unique:users'
+            'email' => 'required'
         ]);
+
+        $user = User::find($id);
+
         if ($req->file('photo')) {
             $req->file('photo')->store('public/admin');
             $path = 'storage/admin/' . $req->file('photo')->hashName();
-            User::find($id)->update([
+            $user->update([
                 'photo' => $path,
             ]);
         }
 
-        User::find($id)->update([
+        $user->update([
             'name' => $validate['name'],
             'email' => $validate['email']
         ]);
 
         if ($req->password != '') {
-            User::find($id)->update([
+            $user->update([
                 'password' => Hash::make($req->password)
             ]);
         }
+
+
+        $user->get_admin->update([
+            'adress' => $req->address,
+            'number' => $req->number,
+            'instagram' => $req->instagram,
+            'telegram' => $req->telegram,
+            'bill' => $req->bill,
+            'finish_billing' => $req->finish_billing,
+        ]);
+
 
         return redirect()->route('admins');
     }

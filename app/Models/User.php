@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(PupilData::class, 'user_id', 'id');
     }
+
+    function get_admin()
+    {
+        return $this->hasOne(AdminData::class, 'user_id', 'id');
+    }
+
+    function get_course()
+    {
+        return $this->hasOne(self::class, 'id', 'course_id');
+    }
 }

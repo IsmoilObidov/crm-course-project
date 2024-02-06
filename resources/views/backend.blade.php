@@ -40,7 +40,7 @@
                 top: 0;
                 width: 100%;
                 height: 100%;
-                overflow: auto;
+                overflow: hidden;
                 background-color: rgba(0, 0, 0, 0.5);
             }
 
@@ -163,23 +163,20 @@
             var modal = document.getElementById(id);
             var closeButton = document.getElementsByClassName("close")[0];
 
-            // Show the modal when the button is clicked
-            document.querySelector("." + button).addEventListener("click", function() {
-                modal.style.display = "block";
-            });
+            modal.style.display = "block";
 
-            // Close the modal when the close button is clicked
+            var closeButton = document.getElementsByClassName("close")[0];
+    
             closeButton.addEventListener("click", function() {
                 modal.style.display = "none";
             });
-
-            // Close the modal if the user clicks outside the modal content
             window.addEventListener("click", function(event) {
                 if (event.target === modal) {
                     modal.style.display = "none";
                 }
             });
         }
+
     </script>
 
 </body>
