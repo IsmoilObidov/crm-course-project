@@ -20,7 +20,7 @@ Route::get('/{id}/pupil', [RegistratorController::class, 'pupil'])->name('regist
 
 Route::post('/save_pupil', [RegistratorController::class, 'save_pupil'])->name('registrator.save_pupil');
 
-Route::get('/pupil_data/{id}', [RegistratorController::class, 'get_pupil'])->name('teacher.pupil_data');
+Route::get('/pupil_data/{id}', [RegistratorController::class, 'get_pupil'])->name('registrator.pupil_data');
 
 Route::get('/delete_pupil/{id}', [StaffController::class, 'delete_pupil'])->name('registrator.delete_pupil');
 
