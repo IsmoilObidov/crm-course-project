@@ -54,7 +54,7 @@
 
             .close {
                 color: #aaa;
-                float: right;
+                float: right !important;
                 font-size: 28px;
                 font-weight: bold;
             }
@@ -166,7 +166,7 @@
             modal.style.display = "block";
 
             var closeButton = document.getElementsByClassName("close")[0];
-    
+
             closeButton.addEventListener("click", function() {
                 modal.style.display = "none";
             });
@@ -176,7 +176,6 @@
                 }
             });
         }
-
     </script>
 
 </body>

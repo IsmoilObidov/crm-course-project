@@ -21,4 +21,4 @@ Route::get('/edit_pupil/{id}', [StaffController::class, 'edit_pupil'])->name('te
 Route::post('/edit_save_pupil/{id}', [StaffController::class, 'edit_save_pupil'])->name('teacher.edit_save_pupil');
 
 
-Route::get('/pupil_data/{id}',[StaffController::class,'get_pupil'])->name('teacher.pupil_data');
+Route::get('/pupil_data/{id}', [StaffController::class, 'get_pupil'])->name('teacher.pupil_data');

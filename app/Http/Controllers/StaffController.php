@@ -266,7 +266,7 @@ class StaffController extends Controller
 
     function edit_pupil($id)
     {
-        $pupil = User::where('id', $id)->first();
+        $pupil = User::find($id);
         return view('teacher.edit_pupil', ['pupil' => $pupil]);
     }
 

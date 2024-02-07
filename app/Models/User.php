@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(self::class, 'id', 'course_id');
     }
+
+    function get_groups()
+    {
+        return $this->hasMany(Groups::class, 'teacher_id', 'id');
+    }
 }
