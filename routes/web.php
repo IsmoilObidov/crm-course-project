@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Models\Subject;
 use Illuminate\Support\Facades\Route;
 
 /*
